@@ -13,7 +13,7 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #000000;
+            background-color: #05050A; /* Very dark blue-gray */
         }
         .section-fade-in {
             opacity: 0;
@@ -33,13 +33,90 @@
             from, to { border-color: transparent; }
             50% { border-color: currentColor; }
         }
+
+        /* --- Lava Lamp Effect CSS --- */
+        .lava-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            filter: blur(80px); /* Adjust blur for different effects */
+        }
+        .lava-bubble {
+            position: absolute;
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: move-lava 10s infinite linear alternate;
+        }
+        .bubble-1 {
+            background-color: #4C2B92; /* Deep purple */
+            width: 300px;
+            height: 300px;
+            top: 10%;
+            left: -5%;
+            animation-duration: 6s; /* Faster movement */
+            animation-delay: -2s;
+        }
+        .bubble-2 {
+            background-color: #2E5C9E; /* Moody blue */
+            width: 375px;
+            height: 375px;
+            top: 50%;
+            left: 80%;
+            animation-duration: 5s; /* Faster movement */
+            animation-delay: -4s;
+        }
+        .bubble-3 {
+            background-color: #3B75C7; /* Brighter blue */
+            width: 270px;
+            height: 270px;
+            top: 60%;
+            left: 10%;
+            animation-duration: 7.5s; /* Faster movement */
+        }
+        .bubble-4 {
+            background-color: #17A2B8; /* A teal-blue */
+            width: 450px;
+            height: 450px;
+            top: 20%;
+            left: 30%;
+            animation-duration: 9s; /* Faster movement */
+            animation-delay: -6s;
+        }
+        .bubble-5 {
+            background-color: #6A3CA3; /* A vibrant purple */
+            width: 225px;
+            height: 225px;
+            top: 80%;
+            left: 40%;
+            animation-duration: 7s; /* Faster movement */
+        }
+        @keyframes move-lava {
+            0% { transform: translate(0, 0) scale(1.0); }
+            25% { transform: translate(10px, -25px) scale(1.1); }
+            50% { transform: translate(-15px, 40px) scale(0.95); }
+            75% { transform: translate(20px, -10px) scale(1.05); }
+            100% { transform: translate(0, 0) scale(1.0); }
+        }
     </style>
 </head>
 <body class="bg-gray-900 text-gray-200">
 
     <!-- Hero Section -->
-    <header class="h-screen flex flex-col items-center justify-center text-center p-8 bg-gray-800 rounded-b-3xl">
-        <div class="space-y-4">
+    <header class="h-screen flex flex-col items-center justify-center text-center p-8 bg-gray-800 rounded-b-3xl relative overflow-hidden">
+        <!-- Lava Lamp Background -->
+        <div class="lava-container">
+            <div class="lava-bubble bubble-1"></div>
+            <div class="lava-bubble bubble-2"></div>
+            <div class="lava-bubble bubble-3"></div>
+            <div class="lava-bubble bubble-4"></div>
+            <div class="lava-bubble bubble-5"></div>
+        </div>
+
+        <!-- Hero Content -->
+        <div class="space-y-4 relative z-10">
             <h1 class="text-6xl md:text-8xl font-bold tracking-tight text-white">
                 <span id="typewriter-text" class="blinking-cursor"></span>
             </h1>
@@ -57,19 +134,14 @@
                     </a>
                 </div>
             </div>
-            <!-- Scroll Indicator -->
-            <div class="absolute bottom-12 left-1/2 transform -translate-x-1/2 animate-bounce">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-8 h-8 text-gray-400">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
-                </svg>
-            </div>
+            
         </div>
     </header>
 
-    <!-- Header for scroll effect -->
-    <div id="sticky-header" class="fixed top-0 left-0 w-full z-50 p-6 backdrop-blur-sm bg-gray-800/80 transform -translate-y-full transition-transform duration-300 hidden">
+ <!-- Header for scroll effect -->
+    <div id="sticky-header" class="fixed top-0 left-0 w-full z-50 py-4 px-8 backdrop-blur-md bg-black/50 transform -translate-y-full transition-all duration-300 opacity-0">
         <nav class="container mx-auto flex items-center justify-between">
-            <h1 class="text-2xl font-bold text-white">A Visual Story</h1>
+            <h1 class="text-xl font-bold text-gray-200">Johith Johnson</h1>
             <ul class="flex space-x-6 text-gray-400 font-medium">
                 <li><a href="#about" class="hover:text-white transition-colors duration-300">About</a></li>
                 <li><a href="#projects" class="hover:text-white transition-colors duration-300">Projects</a></li>
@@ -148,7 +220,7 @@
                 <p class="text-lg leading-relaxed text-gray-400 max-w-xl">
                     I'm always open to new opportunities and collaborations. Feel free to reach out to me via email or connect on my social media channels.
                 </p>
-                <a href="mailto:johnsonjohith@example.com" class="px-8 py-3 text-white bg-gray-700 rounded-full hover:bg-gray-600 transition duration-300 transform hover:scale-105">
+                <a href="mailto:johnsonjohith+github@gmail.com" class="px-8 py-3 text-white bg-gray-700 rounded-full hover:bg-gray-600 transition duration-300 transform hover:scale-105">
                     Send Me an Email
                 </a>
                 <div class="flex justify-center items-center gap-8 md:gap-12 text-gray-400">
@@ -209,14 +281,13 @@
         // Handle the sticky header on scroll
         const stickyHeader = document.getElementById('sticky-header');
         window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                stickyHeader.classList.remove('hidden');
-                stickyHeader.classList.remove('-translate-y-full');
+            const heroHeight = window.innerHeight; // Get the full viewport height
+            if (window.scrollY > heroHeight * 0.8) {
+                stickyHeader.classList.remove('-translate-y-full', 'hidden');
+                stickyHeader.classList.add('opacity-100');
             } else {
+                stickyHeader.classList.remove('opacity-100');
                 stickyHeader.classList.add('-translate-y-full');
-                setTimeout(() => {
-                    stickyHeader.classList.add('hidden');
-                }, 300); // Wait for the transition to finish
             }
         });
 
@@ -232,17 +303,17 @@
             function type() {
                 const currentPhrase = phrases[phraseIndex];
                 if (isTyping && !isPaused) {
-                    textElement.textContent += currentPhrase.charAt(charIndex);
-                    charIndex++;
-                    if (charIndex === currentPhrase.length) {
+                    if (charIndex < currentPhrase.length) {
+                        textElement.textContent += currentPhrase.charAt(charIndex);
+                        charIndex++;
+                        setTimeout(type, 80); // Speed of typing
+                    } else {
                         isTyping = false;
                         isPaused = true;
                         setTimeout(() => {
                             isPaused = false;
                             erase();
                         }, 1200); // Wait a bit before starting to erase
-                    } else {
-                        setTimeout(type, 80); // Speed of typing
                     }
                 }
             }
