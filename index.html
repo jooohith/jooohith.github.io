@@ -140,9 +140,9 @@
 
  <!-- Header for scroll effect -->
     <div id="sticky-header" class="fixed top-0 left-0 w-full z-50 py-4 px-8 backdrop-blur-md bg-black/50 transform -translate-y-full transition-all duration-300 opacity-0">
-        <nav class="container mx-auto flex items-center justify-between">
+        <nav class="container mx-auto flex items-center justify-between flex-wrap">
             <h1 class="text-xl font-bold text-gray-200">Johith Johnson</h1>
-            <ul class="flex space-x-6 text-gray-400 font-medium">
+            <ul class="flex flex-wrap space-x-6 text-gray-400 font-medium">
                 <li><a href="#about" class="hover:text-white transition-colors duration-300">About</a></li>
                 <li><a href="#projects" class="hover:text-white transition-colors duration-300">Projects</a></li>
                 <li><a href="#vsco" class="hover:text-white transition-colors duration-300">VSCO</a></li>
@@ -220,7 +220,7 @@
                 <p class="text-lg leading-relaxed text-gray-400 max-w-xl">
                     I'm always open to new opportunities and collaborations. Feel free to reach out to me via email or connect on my social media channels.
                 </p>
-                <a href="mailto:johnsonjohith+github@gmail.com" class="px-8 py-3 text-white bg-gray-700 rounded-full hover:bg-gray-600 transition duration-300 transform hover:scale-105">
+                <a href="mailto:johnsonjohith@example.com" class="px-8 py-3 text-white bg-gray-700 rounded-full hover:bg-gray-600 transition duration-300 transform hover:scale-105">
                     Send Me an Email
                 </a>
                 <div class="flex justify-center items-center gap-8 md:gap-12 text-gray-400">
@@ -281,9 +281,9 @@
         // Handle the sticky header on scroll
         const stickyHeader = document.getElementById('sticky-header');
         window.addEventListener('scroll', () => {
-            const heroHeight = window.innerHeight; // Get the full viewport height
+            const heroHeight = document.querySelector('header').offsetHeight; // Get the full viewport height
             if (window.scrollY > heroHeight * 0.8) {
-                stickyHeader.classList.remove('-translate-y-full', 'hidden');
+                stickyHeader.classList.remove('-translate-y-full');
                 stickyHeader.classList.add('opacity-100');
             } else {
                 stickyHeader.classList.remove('opacity-100');
